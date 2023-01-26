@@ -1,62 +1,51 @@
-function sayHello(name, age) {
-  console.log("Hello my name is " + name + " and I'm " + age);
+// const title = document.getElementById("title");
+
+// title.innerText = "Got you!";
+
+// console.log(title.id);
+// console.log(title.className);
+
+// const hellos = document.getElementsByClassName("hello");
+// // class name이 "hello"인 요소를 배열의 형태로 반환
+// console.log(hellos);
+
+const h1 = document.querySelector("div.hello:first-child h1");
+// querySelector는 CSS Selector를 사용하여 찾으려고 하는 요소 중 가장 처음 요소를 반환
+// 해당하는 요소를 모두 반환하려면 queryselectorAll을 사용
+console.dir(h1);
+
+function handleTitleClick() {
+  h1.style.color = "blue";
 }
-const nameOfPerson = ["nico", "dal", "lynn"];
-const ageOfPerson = [23, 21, 24];
-for (i = 0; i < 3; i++) {
-  sayHello(nameOfPerson[i], ageOfPerson[i]);
+function handleMouseEnter() {
+  h1.innerText = "Mouse is here!";
+}
+function handleMouseLeave() {
+  h1.innerText = "Mouse is gone!";
+}
+function handleWindowResize() {
+  document.body.style.backgroundColor = "tomato";
+}
+function handleWindowCopy() {
+  alert("copier!");
+}
+function handleWindowOffline() {
+  alert("SOS no WIFI!");
+}
+function handleWindowOnline() {
+  alert("All GOOOD");
 }
 
-function plus(firstNumber, secondNumber) {
-  console.log(firstNumber + secondNumber);
-}
-function dviide(firstNumber, secondNumber) {
-  console.log(firstNumber / secondNumber);
-}
-plus(8, 60);
-dviide(98, 20);
+h1.addEventListener("click", handleTitleClick);
+h1.addEventListener("mouseenter", handleMouseEnter);
+h1.addEventListener("mouseleave", handleMouseLeave);
+// 위의 방법과 아래의 방법은 결과가 같다
+// 위의 방법을 사용하면 .removeEventListener를 사용하여 EventListener를 제거할 수 있다.
+// h1.onclick = handleTitleClick;
+// h1.onmouseenter = handleMouseEnter;
+// h1.onmouseleave = handleMouseLeave;
 
-const player = {
-  name: "nico",
-  sayHello: function (otherPersonsName) {
-    console.log("Hello " + otherPersonsName + " nice to meet you");
-  },
-};
-
-player.sayHello("nico");
-player.sayHello("lynn");
-
-const calculator = {
-  plus: function (a, b) {
-    return a + b;
-  },
-  minus: function (a, b) {
-    return a - b;
-  },
-  times: function (a, b) {
-    return a * b;
-  },
-  divide: function (a, b) {
-    return a / b;
-  },
-  power: function (a, b) {
-    return a ** b;
-  },
-};
-
-console.log(calculator.plus(2, 3));
-
-const age = parseInt(prompt("How old are you?"));
-console.log(age);
-console.log(isNaN(age));
-if (isNaN(age) || age < 0) {
-  console.log("Please write a real positive number.");
-} else if (age < 18) {
-  console.log("You are too young.");
-} else if (age <= 18 && age <= 50) {
-  console.log("you can drink.");
-} else if (age > 50 && age <= 80) {
-  console.log("you should exercise.");
-} else if (age > 80) {
-  console.log("You can do whatever you want.");
-}
+window.addEventListener("resize", handleWindowResize);
+window.addEventListener("copy", handleWindowCopy);
+window.addEventListener("offline", handleWindowOffline);
+window.addEventListener("online", handleWindowOnline);
