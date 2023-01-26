@@ -9,6 +9,7 @@
 // // class name이 "hello"인 요소를 배열의 형태로 반환
 // console.log(hellos);
 
+// const body = document.body;
 const h1 = document.querySelector("div.hello:first-child h1");
 // querySelector는 CSS Selector를 사용하여 찾으려고 하는 요소 중 가장 처음 요소를 반환
 // 해당하는 요소를 모두 반환하려면 queryselectorAll을 사용
