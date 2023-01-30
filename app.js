@@ -1,22 +1,41 @@
-const h1 = document.querySelector("div.hello:first-child h1");
+const loginForm = document.querySelector("#login-form");
+const loginInput = document.querySelector("#login-form input");
+const greeting = document.querySelector("#greeting");
 
-function handleTitleClick() {
-  // const clickedClass = "clicked";
-  // if (h1.classList.contains(clickedClass)) {
-  //   h1.classList.remove(clickedClass);
-  // } else {
-  //   h1.classList.add(clickedClass);
-  // } 위의 과정을 아래의 코드(toggle)로 수행할 수 있다
-  h1.classList.toggle("clicked");
+const HIDDEN_CLASSNAME = "hidden";
+const USERNAME_KEY = "username";
+// const link = document.querySelector("a");
 
-  // const currentColor = h1.style.color;
-  // let newColor;
-  // if (currentColor === "blue") {
-  //   newColor = "tomato";
-  // } else {
-  //   newColor = "blue";
-  // }
-  // h1.style.color = newColor;
+function onLoginSubmit(event) {
+  // form을 submit하면 기본적으로 브라우저는 새로고침을 한다.
+  // EventListener가 기본으로 주는 event object를 argument 로 받고 event.preventDefault()를 실행하면 submit 받았을 때 브라우저의 기본동작을 막을 수 있다.
+  event.preventDefault();
+  loginForm.classList.add(HIDDEN_CLASSNAME);
+  const username = loginInput.value;
+  localStorage.setItem(USERNAME_KEY, username);
+  paintGreetings();
 }
 
-h1.addEventListener("click", handleTitleClick);
+// function onLinkClick(event) {
+//   event.preventDefault();
+//   console.log(event);
+// }
+// JS에서는 EventListener의 function에 기본적으로 첫번째 argument로 event에 대한 정보를 준다.
+// link.addEventListener("click", onLinkClick);
+
+function paintGreetings() {
+  const username = localStorage.getItem(USERNAME_KEY);
+  greeting.innerText = `Hello ${username}`;
+  greeting.classList.remove(HIDDEN_CLASSNAME);
+}
+
+const savedUsername = localStorage.getItem(USERNAME_KEY);
+
+if (savedUsername === null) {
+  // show the form
+  loginForm.classList.remove(HIDDEN_CLASSNAME);
+  loginForm.addEventListener("submit", onLoginSubmit);
+} else {
+  // show rhe greetings
+  paintGreetings();
+}
