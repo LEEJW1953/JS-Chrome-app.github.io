@@ -17,12 +17,13 @@ function paintToDo(newToDo) {
   const li = document.createElement("li");
   li.id = newToDo.id;
   const span = document.createElement("span");
-  span.innerText = newToDo.text;
+  span.innerText = `  ${newToDo.text}`;
   const button = document.createElement("button");
-  button.innerText = "❌";
+  button.innerText = "✔️";
+  button.classList.add("todo-button");
   button.addEventListener("click", deleteToDo);
-  li.appendChild(span);
   li.appendChild(button);
+  li.appendChild(span);
   toDoList.appendChild(li);
 }
 
@@ -47,7 +48,7 @@ function deleteToDo(event) {
   li.remove();
   // toDos.filter()를 사용해 삭제 버튼을 클릭한 todolist의 id와 같은 원소를 삭제한 배열로 수정할 수 있다.(67번째 줄 참고)
   // li.id의 값은 string이기 때문에 parseInt하여 사용한다.
-  toDos = toDos.filter(toDo => toDo.id !== parseInt(li.id));
+  toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id));
   saveToDos(); // 수정한 배열을 local storage에 저장한다.
 }
 
@@ -73,6 +74,6 @@ function arrayfilter(item) {
 }
 console.log(arr.filter(arrayfilter));
 // 위의 경우 arr의 원소 중 1000보다 크거나 같은 원소만 남긴 배열을 보여준다.
-const newArr = arr.filter(item => item >= 1000);
+const newArr = arr.filter((item) => item >= 1000);
 console.log(newArr);
 // 위와 같이 나타낼 수도 있다.

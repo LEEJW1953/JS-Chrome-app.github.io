@@ -6,8 +6,8 @@ function getClock() {
   // String.padEnd()를 사용하면 문자의 뒤에 추가할 수 있다.
   const hours = String(date.getHours()).padStart(2, "0");
   const minutes = String(date.getMinutes()).padStart(2, "0");
-  const seconds = String(date.getSeconds()).padStart(2, "0");
-  clock.innerText = `${hours}:${minutes}:${seconds}`;
+  // const seconds = String(date.getSeconds()).padStart(2, "0");
+  clock.innerText = `${hours}:${minutes}`;
 }
 getClock();
 // setInterval(function, time)을 사용하여 time(ms)의 간격으로 function을 실행 할 수 있다.
